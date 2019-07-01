@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+	<title>DoneItt</title>
+</head>
+<body>
+	<div>
+		<div>
+			<h3>Welcome to DoneItt</h3>
+			<p> You're Personal Todo List Helping You Keep All Your Tasks Together One Day At A Time.</p>
+			<a th:href="@{/task/newTask}">New Task</a>
+			<a th:href="@{/}">Home</a>
+		</div>
+		
+		<form th:action="@{/task/{id}/update}" th:object="${task}" th:method="put" >
+			<p>Title</p>
+			<input type="text" th:field="*{title}" name="Title">
+			<p>Description</p>
+			<input type="text" th:field="*{description}" name="Description">
+			<p>Creator</p>
+			<input type="text" th:field="*{creator}" name="Creator">
+
+			<input type="submit"></input>
+		</form>
+	
+
+	</div>
+</body>
+</html>

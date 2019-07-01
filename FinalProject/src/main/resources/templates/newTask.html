@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+	<title>DoneItt</title>
+</head>
+<body>
+	<div>
+		<h2>New Task</h2>
+		
+		<form th:action="@{newTask/save}" th:object="${task}" th:method="post" >
+			<p>Title</p>
+			<input type="text" th:field="*{title}" name="Title">
+			<p>Description</p>
+			<input type="text" th:field="*{description}" name="Description">
+			<p>Creator</p>
+			<input type="text" th:field="*{creator}" name="Creator">
+
+			<input type="submit"></button>
+		</form>
+
+
+	</div>
+</body>
+</html>
