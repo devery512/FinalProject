@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymleaf.org">
 <head>
-	<title>DoneItt</title>
+<title>DoneItt</title>
+<link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
 </head>
 <body>
-	<div>
-		<h2>New Task</h2>
-		
-		<form th:action="@{newTask/save}" th:object="${task}" th:method="post" >
-			<p>Title</p>
-			<input type="text" th:field="*{title}" name="Title">
-			<p>Description</p>
-			<input type="text" th:field="*{description}" name="Description">
-			<p>Creator</p>
-			<input type="text" th:field="*{creator}" name="Creator">
 
-			<input type="submit"></button>
-		</form>
+		<div class="container text-center">
+	<div class="card" style="width: 18rem;">
+		<img class="card-img-top"
+			src="data:image/jpeg;base64,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"
+			alt="Card image cap">
+		<div class="card-body">
+
+			<h3 class="card-title">New Task</h3>
 
 
-	</div>
+			<form th:action="@{newTask/save}" th:object="${task}"
+				th:method="post">
+				<p>Title</p>
+				<input type="text" th:field="*{title}" name="Title">
+				<p>Description</p>
+				<input type="text" th:field="*{description}" name="Description">
+				<p>Creator</p>
+				<input type="text" th:field="*{creator}" name="Creator"> <input
+					type="submit">
+				</button>
+			</form>
+			</div>
+			</div>
+		</div>
+	
+	<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
 </body>
 </html>

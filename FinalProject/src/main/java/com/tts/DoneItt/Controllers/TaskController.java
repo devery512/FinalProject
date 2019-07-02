@@ -27,6 +27,7 @@ public class TaskController {
 		return "index";
 	}
 	
+	
 	//Getting The New Task Page
 	@GetMapping("/task/newTask")
 	public String createTask(Model model) {

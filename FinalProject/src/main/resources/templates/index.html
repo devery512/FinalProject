@@ -1,53 +1,68 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>DoneItt</title>
+<title>DoneItt</title>
+<link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="assets/stylesheets/style.css">
+</html>
+	
 </head>
 <body>
-	
-	
-	<div>
-		<h3>Welcome to DoneItt</h3>
-		<p> You're Personal Todo List Helping You Keep All Your Tasks Together One Day At A Time.</p>
-		<a th:href="@{/task/newTask}">New Task</a>
-	</div>
-	
-	<div>
-		<table>
-			<thead>
-				<tr>
-					<th>Title</th>
-					<th>Description</th>
-					<th>Creator</th>
-					<!-- <th>Status</th> -->
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="task:${tasks}">
-					<td th:text="${task.title}"></td>
-					<td th:text="${task.description}"></td>
-					<td th:text="${task.creator}"></td>
-					<td>
-					
-					<a th:href="@{'/task/{id}' (id=${task.id})}"><button type="submit" method="get">View</button></a>
-					
-					<form th:action="@{'/task/{id}/delete'( id=${task.id})}" th:method="delete">
-						<button type="submit" method="delete">Delete</button>
-					</form>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		
-		<div th:if="${tasks.size()== 0}">
-			<p>You Don't Have Any Task To Do Yet.</p>
-			<a>Why Don't You Create A New One Here</a>
-		</div>
-		
+
+	<div style="background:yellow !important" class="jumbotron jumbotron-fluid">
+		<div class="container text-center">
+			<h1 class="display-4">Welcome to DoneItt</h1>
+			<p class="lead">Helping You Keep All Your Tasks Together One Day
+				At A Time.</p>
+</div>
+</div>
+			<div class="container text-center">
+
+				<h4>Your Personal Todo List.</h4>
+				<a th:href="@{/task/newTask}"><button type="button" class="btn btn-success">New Task</button></a>
+				
+			</div>
+			<br>
 			
-	</div>
+			<div class="container text-center">
+				<table text-center>
+					<thead>
+						<tr>
+							<th>Title</th>
 
+							<th>Description</th>
 
+							<th>Creator</th>
+							<!-- <th>Status</th> -->
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="task:${tasks}">
+							<td th:text="${task.title}"></td>
+							<td th:text="${task.description}"></td>
+							<td th:text="${task.creator}"></td>
+							<td><a th:href="@{'/task/{id}' (id=${task.id})}"><button
+										type="submit" method="get">View</button></a>
+
+								<form th:action="@{'/task/{id}/delete'( id=${task.id})}"
+									th:method="delete">
+									<button type="submit" method="delete">Delete</button>
+								</form></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div th:if="${tasks.size()== 0}">
+					<p>You Don't Have Any Task To Do Yet.</p>
+					<br> <a>Why Don't You Create A New One Here</a>
+				</div>
+			</div>
+		
+	
+
+	<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
 </body>
 </html>
