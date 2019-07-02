@@ -47,20 +47,25 @@ public class TaskController {
 		public String show(@PathVariable Long id, Task task, Model model) {
 			Task showTask = taskRepository.findById(id).orElse(null);
 			model.addAttribute("task", showTask);
-			model.addAttribute("title",showTask.getTitle());
-			model.addAttribute("description",showTask.getDescription());
-			model.addAttribute("creator", showTask.getCreator());
 			return "task";
 		}
-	
+
 	//Updating A Specific Task
+		@GetMapping("/task/{id}/edit")
+		public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+		    model.addAttribute("task", taskRepository.findById(id).orElse(null));
+		    return "edit";
+		}
+		
 		@PutMapping("/task/{id}/update")
 		public String update(@PathVariable Long id, Task task, Model model) {
 			Task updateTask = taskRepository.findById(id).orElse(null);
-			model.addAttribute("task", updateTask);
-			return "edit";
+			updateTask.setTitle(task.getTitle());
+			updateTask.setDescription(task.getDescription());
+			updateTask.setCreator(task.getCreator());
+			Task updatedTask = taskRepository.save(updateTask);
+			return "redirect:/task/" + updatedTask.getId();
 		}
-		
 		
 	//Delete Task
 		@DeleteMapping("/task/{id}/delete")
@@ -68,5 +73,4 @@ public class TaskController {
 			taskRepository.deleteById(id);
 			return "redirect:/";
 		}
-		
 }

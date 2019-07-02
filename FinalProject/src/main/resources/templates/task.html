@@ -15,14 +15,12 @@
 	
 	<div>
 		<form th:object="${task}">
-			<h3 th:text="${title}">Your Task</h3>
-			<p th:text="${description}"></p>
-			<p th:text="${creator}"></p>
+			<h3 th:text="*{title}">Your Task</h3>
+			<p th:text="*{description}"></p>
+			<p th:text="*{creator}"></p>
+			<a th:href="@{'/task/{id}/edit' (id=${task.id})}">Edit</a>
 		</form>
-	
-	<form th:action="@{'/task/{id}/update'( id=${task.id})}" th:method="put">
-		<button type="submit" method="put">Update</button>
-	</form>
+		
 	<form th:action="@{'/task/{id}/delete'( id=${task.id})}" th:method="delete">
 		<button type="submit" method="delete">Delete</button>
 	</form>

@@ -12,7 +12,7 @@
 			<a th:href="@{/}">Home</a>
 		</div>
 		
-		<form th:action="@{/task/{id}/update}" th:object="${task}" th:method="put" >
+		<form th:action="@{'/task/{id}/update'( id=${task.id})}" th:object="${task}" th:method="put" >
 			<p>Title</p>
 			<input type="text" th:field="*{title}" name="Title">
 			<p>Description</p>
@@ -20,9 +20,8 @@
 			<p>Creator</p>
 			<input type="text" th:field="*{creator}" name="Creator">
 
-			<input type="submit"></input>
+			<input type="submit" value="Update Task"></input>
 		</form>
-	
 
 	</div>
 </body>
