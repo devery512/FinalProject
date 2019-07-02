@@ -1,5 +1,7 @@
-name:  FinalProject
-memory: 1024
-Minstances: 1
+---
+applications:
+- name: FinalProject
+memory: 1024M
+instances: 1
 random-route: true
 buildpack: https://github.com/cloudfoundry/java-buildpack.git
